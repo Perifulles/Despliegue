@@ -69,6 +69,26 @@ $remaining = $MAX_ATTEMPTS - count($_SESSION['attempts']);
 <head>
 <meta charset="utf-8">
 <title>Mastermind Numérico</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  form {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+</style>
+
 </head>
 <body>
 
