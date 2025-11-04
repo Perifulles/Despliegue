@@ -49,19 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$finished) {
             'partial' => $partial
         ];
 
-        // Verificar si ganó o perdió
-        if ($exact == $NUM_DIGITS) {
-            $_SESSION['finished'] = true;
-            $_SESSION['won'] = true;
-            header("Location: resultado.php");
-        } elseif (count($_SESSION['attempts']) >= $MAX_ATTEMPTS) {
-            $_SESSION['finished'] = true;
-        header("Location: resultado.php");
-        }
-
-        header("Location: index.php");
+    // Verificar si ganó o perdió
+    if ($exact == $NUM_DIGITS) {
+        $_SESSION['finished'] = true;
+        $_SESSION['won'] = true;
+        header("Location: resultado.php?won=1&secret=$secret");
+        exit;
+    } elseif (count($_SESSION['attempts']) >= $MAX_ATTEMPTS) {
+        $_SESSION['finished'] = true;
+        header("Location: resultado.php?won=0&secret=$secret");
         exit;
     }
+  }
 }
 
 $remaining = $MAX_ATTEMPTS - count($_SESSION['attempts']);
