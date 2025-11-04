@@ -48,20 +48,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$finished) {
             'exact' => $exact,
             'partial' => $partial
         ];
+      // Verificar si ganó o perdió
+      if ($exact == $NUM_DIGITS) {
+          $_SESSION['finished'] = true;
+          $_SESSION['won'] = true;
+          header("Location: resultado.php?won=1&secret=$secret");
+          exit;
+      } elseif (count($_SESSION['attempts']) >= $MAX_ATTEMPTS) {
+          $_SESSION['finished'] = true;
+          header("Location: resultado.php?won=0&secret=$secret");
+          exit;
+      }
 
-    // Verificar si ganó o perdió
-    if ($exact == $NUM_DIGITS) {
-        $_SESSION['finished'] = true;
-        $_SESSION['won'] = true;
-        header("Location: resultado.php?won=1&secret=$secret");
-        exit;
-    } elseif (count($_SESSION['attempts']) >= $MAX_ATTEMPTS) {
-        $_SESSION['finished'] = true;
-        header("Location: resultado.php?won=0&secret=$secret");
-        exit;
-    }
-  }
+          header("Location: index.php");
+          exit;
+      }
 }
+
+
 
 $remaining = $MAX_ATTEMPTS - count($_SESSION['attempts']);
 ?>
@@ -70,6 +74,38 @@ $remaining = $MAX_ATTEMPTS - count($_SESSION['attempts']);
 <head>
 <meta charset="utf-8">
 <title>Mastermind Numérico</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  form {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+  }
+  button {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+</style>
+
 </head>
 <body>
 
