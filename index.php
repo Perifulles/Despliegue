@@ -87,6 +87,18 @@ $remaining = $MAX_ATTEMPTS - count($_SESSION['attempts']);
     text-align: center;
     margin-bottom: 10px;
   }
+
+  input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+  }
+  button {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
 </style>
 
 </head>
